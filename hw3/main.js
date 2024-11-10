@@ -178,3 +178,4 @@ for (let user of users) {
         console.log(user)
     }
 }
+console.log(0%2)
