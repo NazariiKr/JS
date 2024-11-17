@@ -14,4 +14,4 @@ for (let suit of suits) {
 console.log(cards)
 // - всі трефи від 9 та більше
 //
-console.log(cards.filter(card => card.cardSuit==='clubs' && (card.value !== '6' || card.value !== '7' || card.value !== '8')));
+console.log(cards.filter(card => card.cardSuit==='clubs' && (card.value !== '6' || card.value !== '7' || card.value !== '8') ));

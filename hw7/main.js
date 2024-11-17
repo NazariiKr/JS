@@ -238,3 +238,36 @@ Array.prototype.myFilter = function (callback) {
 }
 let arrMyFilter = testArray.myFilter(value => value > 30)
 console.log(arrMyFilter)
+
+
+let foobar = [
+    {name: 'vasia', age: 23},
+    {name: 'vasia', age: 23},
+    {name: 'vasia', age: 23},
+    {name: 'vasia', age: 23},
+    {name: 'vasia', age: 23}
+]
+
+Array.prototype.myMap = function (callback) {
+
+    let arr = []
+    for (let i = 0; i < this.length; i++) {
+        const item = this[i];
+        arr.push(callback(item, i))
+
+    }
+    return arr
+}
+let testMyMap = foobar.myMap((value, index) => {
+    let newUser = {
+        id: index + 1,
+        name:value.name,
+        age: value.age,
+        userName:value.name+(index+1)
+
+
+    }
+    return newUser
+})
+console.log(testMyMap)
+
