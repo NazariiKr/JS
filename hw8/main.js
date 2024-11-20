@@ -3,24 +3,21 @@
 // Додати перевірки на undefined, null, NaN.
 //     Подумати і реалізувати логіку, в якій кінцевий об'єкт буде мати функції,які в нього були до цього моменту.
 
+
 function copy(obj) {
-    let functionObj = []
-    for (const objKey in obj) {
-        if (typeof obj[objKey] === 'function') {
-            let functionCopy = obj[objKey].bind({});
-            functionObj.push({functionCopy, objKey})
-        }}
-        if (obj) {
-            let objCopy = JSON.parse(JSON.stringify(obj));
-            for (const item of functionObj) {
-                objCopy[item.objKey]=item.functionCopy
-            }
-            return objCopy
-        }}
+    let copyObg=JSON.parse(JSON.stringify(obj))
+    for (const key in obj) {
+        if (typeof obj[key]==='function'){
+            copyObg[key]=obj[key].bind()
+        }
+    }
+    return copyObg
+}
 
-
-
-    console.log(copy({name: 'vaisa', age: 23, foo(){}}));
+console.log(copy({
+    name: 'abc', age: 23, foo() {
+    }
+}));
 
 //
 //
@@ -48,8 +45,7 @@ function copy(obj) {
     ];
     let coursesMap = coursesAndDurationArray.map((value, index) => ({...value, id: index + 1}))
 
-    console.log(coursesMap)
-
+    console.log(coursesMap);
 
 
 

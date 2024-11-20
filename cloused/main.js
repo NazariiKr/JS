@@ -66,31 +66,51 @@
 //
 
 
-let arr= []
-console.log(Array.isArray(arr));
-arr.push('new element1');
-arr.push('new element2');
-arr.push('new element3');
-arr.push('new element4');
-arr.push('new element5');
-console.log(arr)
+// let arr= []
+// console.log(Array.isArray(arr));
+// arr.push('new element1');
+// arr.push('new element2');
+// arr.push('new element3');
+// arr.push('new element4');
+// arr.push('new element5');
+// console.log(arr)
+//
+// arr.pop();
+// console.log(arr)
+//
+// arr.unshift('!!!')
+// console.log(arr)
+//
+// arr.shift()
+// console.log(arr)
+//
+// let join=arr.join("-")
+// console.log(join)
+//
+// let nums=[11,22,33,44,55]
+// let concat=arr.concat(nums);
+// console.log(concat)
+//
+// console.log(nums.reverse());
+//
+// console.log(concat.slice(0, 4));
+//
 
-arr.pop();
-console.log(arr)
 
-arr.unshift('!!!')
-console.log(arr)
 
-arr.shift()
-console.log(arr)
 
-let join=arr.join("-")
-console.log(join)
+let user={name:'vasia',age:23}
+let user1={fo(){},id:23}
+console.log(user1)
+console.log(user)
+console.log(user.name)
+console.log(user.age)
+console.log(user["name"])
+user['surname']='pupkin'
+user.id=user1['id']
 
-let nums=[11,22,33,44,55]
-let concat=arr.concat(nums);
-console.log(concat)
-
-console.log(nums.reverse());
-
-console.log(concat.slice(0, 4));
+user['fo']=user1['fo']
+console.log(user)
+let {name,surname,id}=user
+console.log(name)
+console.log(id)
