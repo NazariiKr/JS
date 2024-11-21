@@ -1,0 +1,18 @@
+.wrapper{
+    display: grid;
+    grid-template-columns:repeat(2,400px);
+    justify-content: center;
+    gap: 100px;
+    }
+.card{
+background: silver;
+    height: 350px;
+}
+.divWrap{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+.title{
+    text-align: center;
+}
