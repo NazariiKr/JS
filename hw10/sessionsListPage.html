@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+let arr = JSON.parse(localStorage.getItem('sessionsList'));
+for (const arrElement of arr) {
+    let divElement = document.createElement('div');
+    divElement.innerText=arrElement
+    document.body.appendChild(divElement)
+}
+</script>
+</body>
+</html>
