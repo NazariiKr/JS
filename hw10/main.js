@@ -70,12 +70,12 @@ inputWeight.oninput = function () {
 // В localStorage зберігаються масиви. Вам потрібно зробити функцію, які дістає потрібний вам масив з localStorage та додає в нього об'єкт
 // сигнатура функції -
 // addToLocalStorage(arrayName:string,objToAdd:any{}):void
-function addToLocalStorage (arrayName,objToAdd){
+function addToLocalStorage(arrayName, objToAdd) {
     let array = JSON.parse(localStorage.getItem(arrayName));
-    if (typeof objToAdd==='object'){
+    if (typeof objToAdd === 'object') {
         array.push(objToAdd)
     }
-    localStorage.setItem(arrayName,JSON.stringify(array))
+    localStorage.setItem(arrayName, JSON.stringify(array))
 }
 
 // addToLocalStorage('load',{})
@@ -87,17 +87,17 @@ function addToLocalStorage (arrayName,objToAdd){
 //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
 let table = document.getElementById('table');
 let form3 = document.getElementById('form3');
-form3.onsubmit=function (ev) {
+form3.onsubmit = function (ev) {
     ev.preventDefault()
-    let valueLines=+this.lines.value
-    let valueCells=+this.cells.value
-    let valueData=this.data.value
+    let valueLines = +this.lines.value
+    let valueCells = +this.cells.value
+    let valueData = this.data.value
     for (let i = 0; i < valueLines; i++) {
         let tr = document.createElement('tr');
         table.appendChild(tr)
         for (let j = 0; j < valueCells; j++) {
             let td = document.createElement('td');
-            td.innerText=valueData
+            td.innerText = valueData
             tr.appendChild(td)
 
         }
@@ -114,22 +114,19 @@ form3.onsubmit=function (ev) {
 //     При перезавантаженні, яке відбулось раніше ніж минуло 10 секунд - нічого не відбувається
 let divSuma = document.getElementById('divSuma');
 
-let sessionsList=JSON.parse(localStorage.getItem('load')) ||[]
-let date=new Date()-new Date(0)
-console.log(date)
-sessionsList.push(date)
-localStorage.setItem('load', JSON.stringify(sessionsList))
- let array = JSON.parse(localStorage.getItem('load'));
-console.log(array)
-let sum=(array[array.length-1]-array[array.length-2])/1000
+let load = JSON.parse(localStorage.getItem('load')) || []
+let date = new Date() - new Date(0)
+load.push(date)
+localStorage.setItem('load', JSON.stringify(load))
+let array = JSON.parse(localStorage.getItem('load'));
+let sum = (array[array.length - 1] - array[array.length - 2]) / 1000
 let cost = +localStorage.getItem('cost')
-console.log(cost)
-if (sum>10){
-    cost+=10
+if (sum > 10) {
+    cost += 10
     localStorage.setItem('cost', cost)
-    divSuma.innerText = `${+localStorage.getItem("cost")+100}`
-}else{
-    divSuma.innerText = `${+localStorage.getItem("cost")+100}`
+    divSuma.innerText = `${+localStorage.getItem("cost") + 100}`
+} else {
+    divSuma.innerText = `${+localStorage.getItem("cost") + 100}`
 }
 
 
@@ -141,19 +138,15 @@ if (sum>10){
 // при завантажені сторінки з'являються перші 10 об'єктів.
 //     При натисканні next виводяться наступні 10 об'єктів
 // При натисканні prev виводяться попередні 10 об'єктів
+let arrayEnter = document.getElementById('arrayEnter');
+let prev = document.getElementById('prev');
+let next = document.getElementById('next');
 
-localStorage.setItem('key',10)
-let key = JSON.parse(localStorage.getItem('key'))
-console.log(key)
 let arr = []
 for (let i = 0; i < 100; i++) {
     arr.push({id: i + 1, name: 'vasia'})
 }
-console.log(arr)
-localStorage.getItem('j')
-let arrayEnter = document.getElementById('arrayEnter');
-let prev = document.getElementById('prev');
-let next = document.getElementById('next');
+
 for (let i = 0; i < 10; i++) {
     const arrElement = arr[i];
     let item = document.createElement('div')
@@ -161,215 +154,236 @@ for (let i = 0; i < 10; i++) {
     item.innerText = `id-${arrElement.id} name-${arrElement.name}`;
     arrayEnter.appendChild(item)
 }
-console.log(document.getElementsByClassName('item')[2])
+localStorage.setItem('key', 10)
 let a, b
 next.onclick = function () {
     let j = +localStorage.getItem('key')
     if (j >= 0 && j < 10) {
         a = 0
         b = 10
-        if (j<=90) localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
 
 
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
 
     if (j >= 10 && j < 20) {
         a = 10
         b = 20
-        if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if  (j >= 20 && j < 30) {
+        }
+    }
+    if (j >= 20 && j < 30) {
         a = 20
         b = 30
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 30 && j < 40) {
+        }
+    }
+    if (j >= 30 && j < 40) {
         a = 30
         b = 40
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 40 && j < 50) {
+        }
+    }
+    if (j >= 40 && j < 50) {
         a = 40
         b = 50
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 50 && j < 60) {
+        }
+    }
+    if (j >= 50 && j < 60) {
         a = 50
         b = 60
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 60 && j < 70) {
+        }
+    }
+    if (j >= 60 && j < 70) {
         a = 60
         b = 70
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 70 && j < 80) {
+        }
+    }
+    if (j >= 70 && j < 80) {
         a = 70
         b = 80
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-     if (j >= 80 && j < 90) {
+        }
+    }
+    if (j >= 80 && j < 90) {
         a = 80
         b = 90
-         if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j >= 90 && j < 100) {
         a = 90
         b = 100
-        if (j<=90)localStorage.setItem('key',j+10)
+        if (j <= 90) localStorage.setItem('key', j + 10)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
 }
-prev.onclick=function () {
+prev.onclick = function () {
 
-    let j = +localStorage.getItem('key')-10
+    let j = +localStorage.getItem('key') - 10
     if (j > 0 && j <= 10) {
         a = 0
         b = 10
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
 
     if (j > 10 && j <= 20) {
         a = 10
         b = 20
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
-    if  (j > 20 && j <= 30) {
+        }
+    }
+    if (j > 20 && j <= 30) {
         a = 20
         b = 30
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 30 && j <= 40) {
         a = 30
         b = 40
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 40 && j <= 50) {
         a = 40
         b = 50
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 50 && j <= 60) {
         a = 50
         b = 60
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 60 && j <= 70) {
         a = 60
         b = 70
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 70 && j <= 80) {
         a = 70
         b = 80
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 80 && j <= 90) {
         a = 80
         b = 90
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}
+        }
+    }
     if (j > 90 && j <= 100) {
         a = 90
         b = 100
-        if (j>=10)localStorage.setItem('key',j)
+        if (j >= 10) localStorage.setItem('key', j)
         for (let i = a; i < b; i++) {
             const arrElement = arr[i];
-            let item = document.getElementsByClassName('item')[i-a];
+            let item = document.getElementsByClassName('item')[i - a];
             item.innerText = `id-${arrElement.id} name-${arrElement.name}`
 
-        }}}
+        }
+    }
+}
